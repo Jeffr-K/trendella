@@ -1,12 +1,15 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT}
 
 spring:
+  config:
+    import:
+      - optional:file:.env[.properties]
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/amoenitas_db
-    username: root
-    password: root
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
     open-in-view: true
     hibernate:
@@ -21,17 +24,29 @@ spring:
     redis:
       lettuce:
         pool:
-          time-between-eviction-runs:
-          max-active: 3
-          max-idle: 2
-          max-wait: 1
-      port: 6379
-      host: localhost
-      password: redis@!#
+          time-between-eviction-runs: 10
+          max-active: 8
+          max-idle: 8
+          max-wait: -1ms
+          min-idle: 0
+      port: ${REDIS_PORT}
+      host: ${REDIS_HOST}
+      password: ${REDIS_PASSWORD}
+
+elasticsearch:
+  host: localhost
+  port: 9200
 
 logging:
   level:
     org.hibernate.SQL: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 
 #springdoc:
 #  swagger-ui:
