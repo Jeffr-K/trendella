@@ -65,12 +65,6 @@ dependencies {
     kapt ("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt ("jakarta.annotation:jakarta.annotation-api")
     kapt ("jakarta.persistence:jakarta.persistence-api")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.20")
-    implementation(kotlin("stdlib-jdk8", "1.9.20"))
-    implementation(kotlin("stdlib-jdk17", "1.9.20"))
-//    implementation("org.jetbrains.kotlin:kotlin-reflect")
-//    implementation(kotlin("stdlib-jdk8"))
-//    implementation(kotlin("stdlib-jdk17"))
 }
 
 tasks.withType<KotlinCompile> {
