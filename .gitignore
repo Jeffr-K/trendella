@@ -1,6 +1,9 @@
 ### DEPLOYMENT ###
 docker-compose.yml
+Dockerfile
 nginx.conf
+.env
+
 
 HELP.md
 .gradle
