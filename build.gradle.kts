@@ -40,17 +40,19 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-batch")
-    implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+//    implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("io.hypersistence:hypersistence-utils-hibernate-62:3.6.1")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.modelmapper:modelmapper:2.4.4")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
-    implementation("org.apache.kafka:kafka-streams")
-    implementation("org.springframework.kafka:spring-kafka")
+//    implementation("org.apache.kafka:kafka-streams")
+//    implementation("org.springframework.kafka:spring-kafka")
 
     compileOnly("org.projectlombok:lombok")
 

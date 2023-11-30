@@ -1,4 +1,4 @@
-package com.lambsroad.trendella.infrastructure.configuration
+package com.lambsroad.trendella.infrastructure.configuration.database
 
 import org.springframework.beans.factory.annotation.Value
 //import org.springframework.cache.CacheManager
@@ -22,8 +22,8 @@ class RedisConfig {
     @Value("\${spring.data.redis.host}")
     private val host: String? = null
 
-    @Value("\${spring.data.redis.port}")
-    private val port: Int = 0
+    @Value("w\${spring.data.redis.port}")
+    private val port: String? = null
 
     @Bean
     fun redisConnectionFactory(): RedisConnectionFactory {

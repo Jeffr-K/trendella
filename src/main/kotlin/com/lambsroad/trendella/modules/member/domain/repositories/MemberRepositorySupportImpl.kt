@@ -1,0 +1,23 @@
+package com.lambsroad.trendella.modules.member.domain.repositories
+
+import com.lambsroad.trendella.modules.member.domain.entities.Member
+import com.lambsroad.trendella.modules.member.domain.entities.QMember
+import com.querydsl.jpa.impl.JPAQueryFactory
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
+import org.springframework.stereotype.Repository
+
+
+@Repository
+class MemberRepositorySupportImpl(
+    private val queryFactory: JPAQueryFactory
+) : QuerydslRepositorySupport(Member::class.java),
+    MemberRepositorySupport {
+
+    override fun findMemberById(memberId: Long?): Member? {
+        return queryFactory
+            .selectFrom(QMember.member)
+            .where(QMember.member.id.eq(memberId))
+            .fetchOne()
+    }
+
+}
