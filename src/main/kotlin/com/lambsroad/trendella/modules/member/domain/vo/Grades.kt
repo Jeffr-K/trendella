@@ -1,9 +1,18 @@
 package com.lambsroad.trendella.modules.member.domain.vo
 
-enum class Grades(grades: String) {
-    BRONZE("브론즈"),
-    SILVER("실버"),
-    GOLD("골드"),
-    PLATINUM("플래티넘"),
-    DIAMOND("다이아몬드")
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonValue
+
+enum class Grades(@JsonValue val grades: String) {
+    BRONZE("bronze"),
+    SILVER("silver"),
+    GOLD("gold"),
+    PLATINUM("platinum"),
+    DIAMOND("diamond");
+
+    companion object {
+        @JvmStatic
+        @JsonCreator
+        fun set(grades: String) = entries.find { it.grades == grades }
+    }
 }

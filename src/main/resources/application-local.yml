@@ -13,7 +13,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
@@ -39,6 +39,11 @@ management:
     web:
       exposure:
         include: "*"
+
+twilio:
+  accountSid: AC832def89dad6e7bce57ab720ab16d188
+  authToken: 9b9bc316590364ace8528e82f5db04fe
+  phoneNumber: +16466008132
 
 
 #springdoc:

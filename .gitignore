@@ -3,6 +3,7 @@ docker-compose.yml
 Dockerfile
 nginx.conf
 .env
+firebase-admin-sdk.json
 
 
 HELP.md

@@ -1,11 +1,23 @@
 package com.lambsroad.trendella.modules.review.domain.entity
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 
 @Entity
 class Reply(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = 0,
+
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
+
     @Column(name = "content")
     @Comment("내용")
     val content: String,
@@ -21,4 +33,4 @@ class Reply(
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
     val children: MutableList<Reply> = ArrayList(),
 
-    ) : AbstractModelFields() {}
+) {}

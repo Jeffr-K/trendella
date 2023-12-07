@@ -2,8 +2,6 @@ package com.lambsroad.trendella.modules.product.application.service
 
 import com.lambsroad.trendella.modules.product.domain.entities.Product
 import com.lambsroad.trendella.modules.product.domain.repositories.ProductRepository
-import com.lambsroad.trendella.modules.product.presentor.adapter.ProductRegisterAdapter
-import com.lambsroad.trendella.modules.product.presentor.adapter.ProductsQueryAdapter
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 

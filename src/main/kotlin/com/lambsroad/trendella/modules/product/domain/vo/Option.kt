@@ -1,23 +1,37 @@
 package com.lambsroad.trendella.modules.product.domain.vo
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
+import com.lambsroad.trendella.modules.product.domain.entities.Product
+import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
 @Entity
 class Options(
-    @Column(name = "type")
+    type: String,
+    name: String,
+    price: Int,
+    product: Product
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = 0
+        protected set
+
+    @Column(length = 50, nullable = false)
     @Comment("옵션 타입")
-    val type: String,
+    var type: String = type
+        protected set
 
-    @Column(name = "name")
+    @Column(length = 50, nullable = false)
     @Comment("옵션 이름")
-    val name: String,
+    var name: String = name
+        protected set
 
-    @Column(name = "price")
+    @Column(nullable = false)
     @Comment("옵션 가격")
-    val price: Int = 0
+    var price: Int = price
+        protected set
 
-    // 상품 many to one
-) : AbstractModelFields() {}
+    @ManyToOne(fetch = FetchType.LAZY)
+    var product: Product? = product
+        protected set
+}

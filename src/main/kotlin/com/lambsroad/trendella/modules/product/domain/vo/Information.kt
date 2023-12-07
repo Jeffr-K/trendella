@@ -1,52 +1,91 @@
 package com.lambsroad.trendella.modules.product.domain.vo
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
+import com.lambsroad.trendella.modules.product.domain.entities.Product
+import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
 
 @Entity
 class Information(
-    @Column(name = "material")
+    material: String,
+    color: String,
+    size: String,
+    createdCompany: String,
+    createdNation: String,
+    cleaningMethod: String,
+    producedAt: LocalDateTime,
+    warning: String,
+    ensureCondition: String,
+    contact: String,
+    product: Product
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = 0
+        protected set
+
+    @Column(length = 20, nullable = false)
     @Comment("제품소재")
-    val material: String,
+    var material: String = material
+        protected set
 
-    @Column(name = "color")
+    @Column(length = 20, nullable = false)
     @Comment("색상")
-    val color: String,
+    var color: String = color
+        protected set
 
-    @Column(name = "size")
+    @Column(length = 20, nullable = false)
     @Comment("치수")
-    val size: String,
+    var size: String = size
+        protected set
 
-    @Column(name = "createdCompany")
+    @Column(length = 20, nullable = false)
     @Comment("제조사")
-    val createdCompany: String,
+    var createdCompany: String = createdCompany
+        protected set
 
-    @Column(name = "createdNation")
+
+    @Column(length = 20, nullable = false)
     @Comment("제조국")
-    val createdNation: String,
+    var createdNation: String = createdNation
+        protected set
 
-    @Column(name = "cleaningMethod")
+    @Column(length = 20, nullable = false)
     @Comment("세탁 방법")
-    val cleaningMethod: String,
+    var cleaningMethod: String = cleaningMethod
+        protected set
 
-    @Column(name = "producedAt")
+    @Column(length = 20, nullable = false)
     @Comment("제조 년월")
-    val producedAt: LocalDateTime,
+    var producedAt: LocalDateTime = producedAt
+        protected set
 
-    @Column(name = "warning")
+    @Column(length = 20, nullable = false)
     @Comment("취급시 주의사항")
-    val warning: String,
+    var warning: String =  warning
+        protected set
 
-    @Column(name = "ensureCondition")
+    @Column(length = 20, nullable = false)
     @Comment("품질 보증 기준")
-    val ensureCondition: String,
+    var ensureCondition: String =  ensureCondition
+        protected set
 
-    @Column(name = "contact")
+    @Column(length = 20, nullable = false)
     @Comment("A/S Contact")
-    val contact: String,
+    var contact: String = contact
+        protected set
 
-    ) : AbstractModelFields() {
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
+
+    @OneToOne(mappedBy = "information")
+    var product: Product? = product
+        protected set
 }

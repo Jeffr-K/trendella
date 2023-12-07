@@ -1,20 +1,46 @@
 package com.lambsroad.trendella.modules.product.domain.entities
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 
 @Entity
 class Category(
-    @Column(name = "name")
+    name: String
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+        protected set
+
+    @Column(length = 10, nullable = false)
     @Comment("카테고리 이름")
-    val name: String,
+    var name: String = name
+        protected set
+
+    @CreationTimestamp
+    @Comment("등록일시")
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
+
+    @UpdateTimestamp
+    @Comment("수정일시")
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent")
-    val parent: Category?,
+    var parent: Category? = null
+        protected set
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
-    val children: MutableList<Category> = ArrayList()
+    var children: MutableList<Category> = ArrayList()
+        protected set
 
-) : AbstractModelFields() {}
+    @OneToMany(mappedBy = "category")
+    var products: MutableList<Product> = ArrayList()
+        protected set
+
+}

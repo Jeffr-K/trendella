@@ -1,15 +1,24 @@
 package com.lambsroad.trendella.modules.order.domain.entities
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
 import com.lambsroad.trendella.modules.order.domain.vo.OrderStatus
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
+import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 
 @Entity
 class Orders(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = 0,
+
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
+
     @Column(name = "orderTrackingNumber")
     @Comment("주문번호")
     val orderTrackingNumber: Int,
@@ -42,4 +51,4 @@ class Orders(
     // user
     // 상품
 
-) : AbstractModelFields() {}
+) {}

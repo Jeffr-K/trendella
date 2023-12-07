@@ -63,7 +63,7 @@ class ApplicationSecurityConfig {
     fun corsFilter(): CorsFilter {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
-        config.addAllowedOrigin("http://localhost:3000") // 허용할 도메인을 지정
+        config.addAllowedOrigin("http://localhost:3000")
         config.addAllowedMethod("*")
         config.addAllowedHeader("*")
         source.registerCorsConfiguration("/**", config)

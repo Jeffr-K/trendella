@@ -1,9 +1,15 @@
 package com.lambsroad.trendella.modules.cs.domain.entity
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
 import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 
 @Entity
-class Question : AbstractModelFields() {
+class Question() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = 0
+
 
 }

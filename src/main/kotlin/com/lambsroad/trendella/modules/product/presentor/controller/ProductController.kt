@@ -2,13 +2,9 @@ package com.lambsroad.trendella.modules.product.presentor.controller
 
 import com.lambsroad.trendella.modules.product.application.service.ProductService
 import com.lambsroad.trendella.modules.product.domain.entities.Product
-import com.lambsroad.trendella.modules.product.presentor.adapter.ProductRegisterAdapter
-import com.lambsroad.trendella.modules.product.presentor.adapter.ProductsQueryAdapter
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 

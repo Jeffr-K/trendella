@@ -1,31 +1,60 @@
 package com.lambsroad.trendella.modules.member.domain.vo
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
+import com.lambsroad.trendella.modules.product.domain.entities.Brand
+import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 
 @Entity
 class BusinessRegistration(
-    @Column(name = "businessNumber")
+    businessNumber: Int,
+    contactNumber: String,
+    businessEmail: String,
+    returnAddress: String,
+    businessLocation: String,
+    brand: Brand
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = 0
+        protected set
+
+    @Column(nullable = false)
     @Comment("사업자 번호")
-    val businessNumber: Int,
+    var businessNumber: Int = businessNumber
+        protected set
 
-    @Column(name = "contactNumber")
+    @Column(length = 100, nullable = false)
     @Comment("사업자 연락처")
-    val contactNumber: String,
+    var contactNumber: String = contactNumber
+        protected set
 
-    @Column(name = "businessEmail")
+    @Column(length = 100, nullable = false)
     @Comment("사업자 이메일")
-    val businessEmail: String,
+    var businessEmail: String = businessEmail
+        protected set
 
-    @Column(name = "returnAddress")
+    @Column(length = 100, nullable = false)
     @Comment("반송지 주소")
-    val returnAddress: String,
+    var returnAddress: String = returnAddress
+        protected set
 
-    @Column(name = "businessLocation")
+    @Column(length = 100, nullable = false)
     @Comment("영업 소재지")
-    val businessLocation: String
+    var businessLocation: String = businessLocation
+        protected set
 
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
-) : AbstractModelFields() {}
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
+
+    @OneToOne(mappedBy = "businessRegistration")
+    var brand: Brand? = brand
+        protected set
+}

@@ -37,6 +37,9 @@ repositories {
     mavenCentral()
 }
 
+val kotestVersion = "5.8"
+val mockkVersion = "1.13.8"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-batch")
@@ -51,6 +54,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation("com.google.firebase:firebase-admin:9.2.0")
+    implementation("com.twilio.sdk:twilio:9.2.1")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:4.6.0")
 //    implementation("org.apache.kafka:kafka-streams")
 //    implementation("org.springframework.kafka:spring-kafka")
 
@@ -65,6 +71,11 @@ dependencies {
     testImplementation("org.springframework.batch:spring-batch-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.8.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
+    testImplementation("io.kotest:kotest-property:5.8.0")
+    testImplementation("io.mockk:mockk:${mockkVersion}")
 
     implementation ("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     kapt ("com.querydsl:querydsl-apt:5.0.0:jakarta")
@@ -89,7 +100,11 @@ compileTestKotlin.kotlinOptions {
     jvmTarget = "17"
 }
 
-tasks.withType<Test> {
+//tasks.withType<Test> {
+//    useJUnitPlatform()
+//}
+
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 

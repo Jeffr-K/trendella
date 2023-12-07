@@ -1,22 +1,21 @@
 package com.lambsroad.trendella.modules.product.domain.entities
 
-import com.lambsroad.trendella.modules.product.domain.vo.Tag
-import jakarta.persistence.Column
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Embedded
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import java.util.ArrayList
+import com.lambsroad.trendella.modules.product.domain.vo.*
+import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 
 @Entity
 class Product (
     title: String,
-    price: Long,
+    price: Price,
     url: String,
-    provider: String,
     hashtag: Tag,
+    brand: Brand,
+    category: Category,
+    guidance: Guidance,
+    information: Information
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,20 +24,45 @@ class Product (
     @Column(length = 30, nullable = false)
     var title: String = title
         protected set
+    @Embedded
+    var price: Price = price
+        protected set
 
-    @Column(nullable = false)
-    var price: Long = price
+    @Embedded
+    var tag: Tag = hashtag
         protected set
 
     @Column(nullable = false)
     var url: String = url
         protected set
 
-    @Column(nullable = false)
-    var provider: String = provider
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now()
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    var category: Category? = category
         protected set
 
-    @Embedded
-    var tag: Tag = hashtag
+    @ManyToOne(fetch = FetchType.LAZY)
+    var brand: Brand? = brand
+        protected set
+
+    @OneToOne
+    var guidance: Guidance? = guidance
+        protected set
+
+    @OneToOne
+    var information: Information? = information
+        protected set
+
+    @OneToMany(mappedBy = "product")
+    var options: MutableList<Options> = ArrayList()
+        protected set
+
+    @OneToMany(mappedBy = "product")
+    var pictures: MutableList<Picture> = ArrayList()
         protected set
 }

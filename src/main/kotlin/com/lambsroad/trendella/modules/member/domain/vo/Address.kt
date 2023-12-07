@@ -1,11 +1,16 @@
 package com.lambsroad.trendella.modules.member.domain.vo
 
-import com.lambsroad.trendella.infrastructure.configuration.database.AbstractModelFields
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
+import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.LocalDateTime
 
 @Entity
 class Address(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = 0,
+
     @Column(name = "city")
     val city: String,
 
@@ -19,6 +24,12 @@ class Address(
     val street: String,
 
     @Column(name = "zipcode")
-    val zipcode: String
+    val zipcode: String,
 
-) : AbstractModelFields() {}
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+
+) {}
