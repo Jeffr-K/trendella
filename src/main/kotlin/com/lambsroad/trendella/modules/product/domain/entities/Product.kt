@@ -19,17 +19,14 @@ class Product (
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = 0
+    var id: Long? = 0
+        protected set
 
     @Column(length = 30, nullable = false)
     var title: String = title
         protected set
     @Embedded
     var price: Price = price
-        protected set
-
-    @Embedded
-    var tag: Tag = hashtag
         protected set
 
     @Column(nullable = false)
@@ -64,5 +61,12 @@ class Product (
 
     @OneToMany(mappedBy = "product")
     var pictures: MutableList<Picture> = ArrayList()
+        protected set
+
+    @ManyToMany
+    @JoinTable(name = "HashTag",
+        joinColumns = [JoinColumn(name = "productId")],
+        inverseJoinColumns = [JoinColumn(name = "tagId")])
+    var hashtags: MutableList<Tag> = ArrayList()
         protected set
 }

@@ -11,6 +11,8 @@ class MemberRegisteredEventHandler {
     @Async
     @EventListener
     fun handle(event: MemberRegisteredEvent) {
-        println("Event Received: $event")
+        while (true) {
+            println("ggg")
+        }
     }
 }

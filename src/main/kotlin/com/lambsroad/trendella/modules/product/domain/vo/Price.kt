@@ -6,11 +6,16 @@ import org.hibernate.annotations.Comment
 
 @Embeddable
 class Price(
-    @Column(name = "originPrice")
+    originPrice: Long,
+    discountPrice: Long
+) {
+    @Column
     @Comment("상품 본 가격")
-    val originPrice: Long,
+    var originPrice: Long = originPrice
+        protected set
 
-    @Column(name = "originPrice")
+    @Column
     @Comment("상품 할인 가격")
-    val discountPrice: Long
-) {}
+    var discountPrice: Long = discountPrice
+        protected set
+}

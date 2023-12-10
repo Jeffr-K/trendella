@@ -14,6 +14,7 @@ class BusinessRegistration(
     businessEmail: String,
     returnAddress: String,
     businessLocation: String,
+    businessRegisteredAt: LocalDateTime,
     brand: Brand
 ) {
     @Id
@@ -34,6 +35,11 @@ class BusinessRegistration(
     @Column(length = 100, nullable = false)
     @Comment("사업자 이메일")
     var businessEmail: String = businessEmail
+        protected set
+
+    @Column
+    @Comment("사업자 등록 일시")
+    var businessRegisteredAt: LocalDateTime = businessRegisteredAt
         protected set
 
     @Column(length = 100, nullable = false)

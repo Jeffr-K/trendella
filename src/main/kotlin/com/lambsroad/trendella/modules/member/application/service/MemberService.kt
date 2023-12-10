@@ -40,7 +40,7 @@ class MemberService(
             }
         }
     }
-
+    //  publishEvent -> [Event] <-
     fun dropdownMemberAccount(port: MemberDropdownAdapter) {
         val member = this.memberDomainService.getMemberById(port.id)
 
@@ -75,6 +75,5 @@ class MemberService(
     fun getMyProfileInfo(port: MemberSearchProfilePort): Member? {
         return this.memberRepository.getMemberProfile(port.id)
     }
-
 
 }
