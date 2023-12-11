@@ -5,7 +5,10 @@ import com.lambsroad.trendella.modules.product.application.port.CategoryDeletePo
 import com.lambsroad.trendella.modules.product.application.port.CategoryEditPort
 import com.lambsroad.trendella.modules.product.application.port.CategoryRegisterPort
 import com.lambsroad.trendella.modules.product.application.service.CategoryService
-import com.lambsroad.trendella.modules.product.presentor.adapter.*
+import com.lambsroad.trendella.modules.product.presentor.adapter.CategoriesSearchAdapter
+import com.lambsroad.trendella.modules.product.presentor.adapter.CategoryDeleteAdapter
+import com.lambsroad.trendella.modules.product.presentor.adapter.CategoryEditAdapter
+import com.lambsroad.trendella.modules.product.presentor.adapter.CategoryRegisterAdapter
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
@@ -17,7 +20,7 @@ class CategoryController(
 
     @PostMapping
     fun registerCategory(@RequestBody @Valid adapter: CategoryRegisterAdapter): Result<*> {
-        this.categoryService.registerCategory(CategoryRegisterPort(""))
+        this.categoryService.registerCategory(CategoryRegisterPort(adapter.name, adapter.parent))
         return Result.success("카테고리 등록이 성공적으로 처리되었습니다", null)
     }
 
@@ -31,12 +34,6 @@ class CategoryController(
     fun editCategory(@RequestBody @Valid adapter: CategoryEditAdapter): Result<*> {
         this.categoryService.editCategory(CategoryEditPort(adapter.categoryId, adapter.name))
         return Result.success("카테고리 수정이 성공적으로 완료되었습니다.", null)
-    }
-
-    @GetMapping
-    fun getCategory(@RequestBody @Valid adapter: CategorySearchAdapter): Result<*> {
-        val category = this.categoryService.getCategory()
-        return Result.success("카테고리 조회가 성공적으로 처리되었습니다", category)
     }
 
     @GetMapping("/list")

@@ -6,6 +6,7 @@ import org.hibernate.annotations.Comment
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
+import java.util.*
 
 @Entity
 class Information(
@@ -15,11 +16,11 @@ class Information(
     createdCompany: String,
     createdNation: String,
     cleaningMethod: String,
-    producedAt: LocalDateTime,
+    producedAt: Date,
     warning: String,
     ensureCondition: String,
     contact: String,
-    product: Product
+    product: Product?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +60,7 @@ class Information(
 
     @Column(length = 20, nullable = false)
     @Comment("제조 년월")
-    var producedAt: LocalDateTime = producedAt
+    var producedAt: Date = producedAt
         protected set
 
     @Column(length = 20, nullable = false)
@@ -88,4 +89,7 @@ class Information(
     @OneToOne(mappedBy = "information")
     var product: Product? = product
         protected set
+
+    companion object {}
+
 }

@@ -12,9 +12,9 @@ import java.time.LocalDateTime
 class Picture(
     url: String,
     usages: String,
-    sequence: Int,
     representative: Boolean,
-    product: Product
+    sequence: Int,
+    product: Product?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

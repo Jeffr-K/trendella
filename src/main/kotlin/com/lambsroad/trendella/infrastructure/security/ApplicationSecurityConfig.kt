@@ -40,6 +40,9 @@ class ApplicationSecurityConfig {
                     .requestMatchers("/api-docs/**").permitAll()
                     .requestMatchers("/actuator/**").permitAll()
                     .requestMatchers("/product/**").permitAll()
+                    .requestMatchers("/category/**").permitAll()
+                    .requestMatchers("/category/list/**").permitAll()
+                    .requestMatchers("/brand/**").permitAll()
                     .requestMatchers("/exception/**").permitAll()
                     .anyRequest().authenticated()
             }

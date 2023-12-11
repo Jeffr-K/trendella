@@ -9,7 +9,7 @@ class Options(
     type: String,
     name: String,
     price: Int,
-    product: Product
+    product: Product?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

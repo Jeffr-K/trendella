@@ -18,7 +18,7 @@ class Guidance(
     seeThrough: String,
     thickness: String,
     season: String,
-    product: Product
+    product: Product?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,4 +66,6 @@ class Guidance(
     @OneToOne(mappedBy = "guidance")
     var product: Product? = product
         protected set
+
+    companion object {}
 }

@@ -1,6 +1,7 @@
-package com.lambsroad.trendella.modules.product.domain.entities
+package com.lambsroad.trendella.modules.brand.application.domain.entities
 
-import com.lambsroad.trendella.modules.member.domain.vo.BusinessRegistration
+import com.lambsroad.trendella.modules.brand.application.domain.vo.BusinessRegistration
+import com.lambsroad.trendella.modules.product.domain.entities.Product
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp

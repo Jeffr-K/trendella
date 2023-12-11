@@ -1,5 +1,7 @@
 package com.lambsroad.trendella.modules.product.domain.entities
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.CreationTimestamp
@@ -8,7 +10,8 @@ import java.time.LocalDateTime
 
 @Entity
 class Category(
-    name: String
+    name: String,
+    parent: Category?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +35,14 @@ class Category(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent")
-    var parent: Category? = null
+    @JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator::class,
+        property = "id"
+    )
+    var parent: Category? = parent
         protected set
 
-    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    @OneToMany(mappedBy = "parent", orphanRemoval = true, cascade = [CascadeType.ALL])
     var children: MutableList<Category> = ArrayList()
         protected set
 

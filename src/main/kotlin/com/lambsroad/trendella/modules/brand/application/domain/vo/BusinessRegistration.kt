@@ -1,21 +1,22 @@
-package com.lambsroad.trendella.modules.member.domain.vo
+package com.lambsroad.trendella.modules.brand.application.domain.vo
 
-import com.lambsroad.trendella.modules.product.domain.entities.Brand
+import com.lambsroad.trendella.modules.brand.application.domain.entities.Brand
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
+import java.util.*
 
 @Entity
 class BusinessRegistration(
-    businessNumber: Int,
+    businessNumber: String,
     contactNumber: String,
     businessEmail: String,
     returnAddress: String,
     businessLocation: String,
-    businessRegisteredAt: LocalDateTime,
-    brand: Brand
+    businessRegisteredAt: Date,
+    brand: Brand?
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,7 @@ class BusinessRegistration(
 
     @Column(nullable = false)
     @Comment("사업자 번호")
-    var businessNumber: Int = businessNumber
+    var businessNumber: String = businessNumber
         protected set
 
     @Column(length = 100, nullable = false)
@@ -39,7 +40,7 @@ class BusinessRegistration(
 
     @Column
     @Comment("사업자 등록 일시")
-    var businessRegisteredAt: LocalDateTime = businessRegisteredAt
+    var businessRegisteredAt: Date = businessRegisteredAt
         protected set
 
     @Column(length = 100, nullable = false)
