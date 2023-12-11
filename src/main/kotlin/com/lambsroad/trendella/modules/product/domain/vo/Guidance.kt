@@ -1,5 +1,6 @@
 package com.lambsroad.trendella.modules.product.domain.vo
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.lambsroad.trendella.modules.product.domain.entities.Product
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -63,6 +64,7 @@ class Guidance(
     var updatedAt: LocalDateTime = LocalDateTime.now()
         protected set
 
+    @JsonBackReference("guidanceReference")
     @OneToOne(mappedBy = "guidance")
     var product: Product? = product
         protected set

@@ -1,5 +1,6 @@
 package com.lambsroad.trendella.modules.product.domain.vo
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.lambsroad.trendella.modules.product.domain.entities.Product
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -31,6 +32,7 @@ class Options(
     var price: Int = price
         protected set
 
+    @JsonBackReference("optionsReference")
     @ManyToOne(fetch = FetchType.LAZY)
     var product: Product? = product
         protected set

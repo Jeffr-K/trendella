@@ -39,7 +39,7 @@ class ApplicationSecurityConfig {
                     .requestMatchers("/swagger-ui/**").permitAll()
                     .requestMatchers("/api-docs/**").permitAll()
                     .requestMatchers("/actuator/**").permitAll()
-                    .requestMatchers("/product/**").permitAll()
+                    .requestMatchers("/product/list/**").permitAll()
                     .requestMatchers("/category/**").permitAll()
                     .requestMatchers("/category/list/**").permitAll()
                     .requestMatchers("/brand/**").permitAll()

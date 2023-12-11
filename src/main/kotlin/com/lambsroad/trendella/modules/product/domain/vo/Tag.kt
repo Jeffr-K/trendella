@@ -19,7 +19,7 @@ class Tag(
     var name: String = name
         protected set
 
-    @ManyToMany(mappedBy = "hashtags")
+    @ManyToMany(mappedBy = "hashtags", fetch = FetchType.LAZY)
     var product: MutableList<Product> = ArrayList()
         protected set
 }

@@ -1,6 +1,7 @@
 package com.lambsroad.trendella.modules.product.domain.entities
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
@@ -46,6 +47,7 @@ class Category(
     var children: MutableList<Category> = ArrayList()
         protected set
 
+    @JsonManagedReference("categoryReference")
     @OneToMany(mappedBy = "category")
     var products: MutableList<Product> = ArrayList()
         protected set

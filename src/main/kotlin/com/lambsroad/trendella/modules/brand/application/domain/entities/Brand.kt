@@ -1,5 +1,6 @@
 package com.lambsroad.trendella.modules.brand.application.domain.entities
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.lambsroad.trendella.modules.brand.application.domain.vo.BusinessRegistration
 import com.lambsroad.trendella.modules.product.domain.entities.Product
 import jakarta.persistence.*
@@ -28,6 +29,7 @@ class Brand(
     var businessRegistration: BusinessRegistration? = businessRegistration
         protected set
 
+    @JsonManagedReference("brandReference")
     @OneToMany(mappedBy = "brand")
     var products: MutableList<Product> = ArrayList()
         protected set
