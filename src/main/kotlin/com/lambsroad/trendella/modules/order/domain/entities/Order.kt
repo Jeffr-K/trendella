@@ -9,46 +9,64 @@ import java.time.LocalDateTime
 
 @Entity
 class Orders(
+    orderTrackingNumber: Int,
+    orderStatus: OrderStatus,
+    payoff: Boolean,
+    totalProductAmount: Long,
+    totalAmount: Long,
+    shippingFee: Long,
+    destination: String
+) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = 0,
+    var id: Long? = 0
+        protected set
 
-    @CreationTimestamp
-    var createdAt: LocalDateTime = LocalDateTime.now(),
-
-    @UpdateTimestamp
-    var updatedAt: LocalDateTime = LocalDateTime.now(),
-
-    @Column(name = "orderTrackingNumber")
+    @Column
     @Comment("주문번호")
-    val orderTrackingNumber: Int,
+    var orderTrackingNumber: Int = orderTrackingNumber
+        protected set
 
-    @Column(name = "orderStatus")
+    @Column
     @Enumerated(EnumType.STRING)
     @Comment("주문상태")
-    val orderStatus: OrderStatus = OrderStatus.BEFORE,
+    var orderStatus: OrderStatus = orderStatus
+        protected set
 
-    @Column(name = "payoff")
+    @Column
     @Comment("결제상태")
-    val payoff: Boolean = false,
+    var payoff: Boolean = payoff
+        protected set
 
-    @Column(name = "totalProductAmount")
+    @Column
     @Comment("총 상품금액")
-    val totalProductAmount: Long,
+    var totalProductAmount: Long = totalProductAmount
+        protected set
 
-    @Column(name = "totalAmount")
+    @Column
     @Comment("총 주문금액")
-    val totalAmount: Long,
+    var totalAmount: Long = totalAmount
+        protected set
 
-    @Column(name = "shippingFee")
+    @Column
     @Comment("배송료")
-    val shippingFee: Long,
+    var shippingFee: Long = shippingFee
+        protected set
 
-    @Column(name = "destination")
+    @Column
     @Comment("도착지")
-    val destination: String
+    var destination: String = destination
+        protected set
+
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     // user
     // 상품
+}
 
-) {}

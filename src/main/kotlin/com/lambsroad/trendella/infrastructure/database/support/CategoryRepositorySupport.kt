@@ -1,7 +1,7 @@
-package com.lambsroad.trendella.modules.product.domain.repositories
+package com.lambsroad.trendella.infrastructure.database.support
 
 import com.lambsroad.trendella.modules.product.domain.entities.Category
-import com.lambsroad.trendella.modules.product.domain.repositories.adapters.CategoriesSearchAllAdapter
+import com.lambsroad.trendella.infrastructure.database.adapters.CategoriesSearchAllAdapter
 
 interface CategoryRepositorySupport {
     fun getCategory(categoryId: Long?): Category?

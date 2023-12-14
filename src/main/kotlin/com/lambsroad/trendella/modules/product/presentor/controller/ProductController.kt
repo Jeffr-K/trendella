@@ -1,9 +1,11 @@
 package com.lambsroad.trendella.modules.product.presentor.controller
 
 import com.lambsroad.trendella.infrastructure.utils.Result
+import com.lambsroad.trendella.modules.product.application.port.ProductDeletePort
 import com.lambsroad.trendella.modules.product.application.port.ProductRegisterPort
 import com.lambsroad.trendella.modules.product.application.port.ProductRetrievePort
 import com.lambsroad.trendella.modules.product.application.service.ProductService
+import com.lambsroad.trendella.modules.product.presentor.adapter.ProductDeleteAdapter
 import com.lambsroad.trendella.modules.product.presentor.adapter.ProductRegisterAdapter
 import com.lambsroad.trendella.modules.product.presentor.adapter.ProductRetrieveAdapter
 import jakarta.validation.Valid
@@ -37,7 +39,10 @@ class ProductController(
     }
 
     @DeleteMapping
-    fun deleteProduct() {}
+    fun deleteProduct(@RequestBody @Valid adapter: ProductDeleteAdapter): Result<*> {
+        this.productService.deleteProduct(ProductDeletePort(adapter.productId))
+        return Result.success("상품 삭제가 성공적으로 처리되었습니다.", null)
+    }
 
     @PutMapping
     fun editProduct() {}

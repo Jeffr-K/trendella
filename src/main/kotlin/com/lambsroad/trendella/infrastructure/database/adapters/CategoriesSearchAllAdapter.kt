@@ -1,4 +1,4 @@
-package com.lambsroad.trendella.modules.product.domain.repositories.adapters
+package com.lambsroad.trendella.infrastructure.database.adapters
 
 import com.lambsroad.trendella.modules.product.domain.entities.Category
 import java.time.LocalDateTime

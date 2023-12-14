@@ -10,6 +10,7 @@ class Options(
     type: String,
     name: String,
     price: Int,
+    quantity: Int?,
     product: Product?
 ) {
     @Id
@@ -30,6 +31,14 @@ class Options(
     @Column(nullable = false)
     @Comment("옵션 가격")
     var price: Int = price
+        protected set
+
+    // TODO: nullable 지워야함
+    // TODO: 옵션 별 상품 수량을 상품 등록 시 정확히 입력해줘야 할까?
+    // TODO: 옵션 별 상품 수량 변경 API 고민
+    @Column(nullable = false)
+    @Comment("옵션 가격")
+    var quantity: Int? = quantity
         protected set
 
     @JsonBackReference("optionsReference")

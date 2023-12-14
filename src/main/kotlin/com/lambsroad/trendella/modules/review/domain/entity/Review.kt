@@ -1,5 +1,6 @@
 package com.lambsroad.trendella.modules.review.domain.entity
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.CreationTimestamp
@@ -12,12 +13,6 @@ class Review(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = 0,
 
-    @CreationTimestamp
-    var createdAt: LocalDateTime = LocalDateTime.now(),
-
-    @UpdateTimestamp
-    var updatedAt: LocalDateTime = LocalDateTime.now(),
-
     @Column(name = "star")
     @Comment("별점")
     val star: Int,
@@ -26,4 +21,13 @@ class Review(
     @Comment("좋아요")
     val likes: Int,
 
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @UpdateTimestamp
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
+
+    @JsonManagedReference("reviewReference")
+    @OneToMany(mappedBy = "review")
+    var replies: MutableList<Reply> = ArrayList()
 ) {}

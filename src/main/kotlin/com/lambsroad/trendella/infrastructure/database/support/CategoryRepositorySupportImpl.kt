@@ -1,9 +1,9 @@
-package com.lambsroad.trendella.modules.product.domain.repositories
+package com.lambsroad.trendella.infrastructure.database.support
 
 import com.lambsroad.trendella.modules.product.domain.entities.Category
 import com.lambsroad.trendella.modules.product.domain.entities.QCategory
-import com.lambsroad.trendella.modules.product.domain.repositories.adapters.CategoriesSearchAllAdapter
-import com.lambsroad.trendella.modules.product.domain.repositories.conditions.CategoryDynamicQuery.Companion.categoryIdEq
+import com.lambsroad.trendella.infrastructure.database.adapters.CategoriesSearchAllAdapter
+import com.lambsroad.trendella.infrastructure.database.conditions.CategoryDynamicQuery.Companion.categoryIdEq
 import com.querydsl.jpa.impl.JPAQueryFactory
 import jakarta.transaction.Transactional
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport

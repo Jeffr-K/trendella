@@ -1,4 +1,4 @@
-package com.lambsroad.trendella.modules.product.domain.repositories.conditions
+package com.lambsroad.trendella.infrastructure.database.conditions
 
 import com.lambsroad.trendella.modules.product.domain.entities.QCategory
 import com.querydsl.core.types.dsl.BooleanExpression

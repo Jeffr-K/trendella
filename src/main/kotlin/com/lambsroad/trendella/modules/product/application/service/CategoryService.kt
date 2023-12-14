@@ -5,7 +5,7 @@ import com.lambsroad.trendella.modules.product.application.port.CategoryEditPort
 import com.lambsroad.trendella.modules.product.application.port.CategoryRegisterPort
 import com.lambsroad.trendella.modules.product.domain.entities.Category
 import com.lambsroad.trendella.modules.product.domain.repositories.CategoryRepository
-import com.lambsroad.trendella.modules.product.domain.repositories.adapters.CategoriesSearchAllAdapter
+import com.lambsroad.trendella.infrastructure.database.adapters.CategoriesSearchAllAdapter
 import org.springframework.stereotype.Service
 
 @Service

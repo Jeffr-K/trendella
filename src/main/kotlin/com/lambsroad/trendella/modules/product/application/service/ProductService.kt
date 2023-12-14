@@ -1,6 +1,7 @@
 package com.lambsroad.trendella.modules.product.application.service
 
 import com.lambsroad.trendella.modules.brand.application.domain.repositories.BrandRepository
+import com.lambsroad.trendella.modules.product.application.port.ProductDeletePort
 import com.lambsroad.trendella.modules.product.application.port.ProductRegisterPort
 import com.lambsroad.trendella.modules.product.application.port.ProductRetrievePort
 import com.lambsroad.trendella.modules.product.domain.entities.Product
@@ -8,7 +9,7 @@ import com.lambsroad.trendella.modules.product.domain.factories.of
 import com.lambsroad.trendella.modules.product.domain.repositories.*
 import com.lambsroad.trendella.modules.product.domain.vo.*
 import jakarta.transaction.Transactional
-import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
@@ -73,18 +74,32 @@ class ProductService(
         return true
     }
 
+    @Transactional
+    fun deleteProduct(port: ProductDeletePort): Boolean {
+        val product = this.productRepository
+            .findById(port.productId)
+            .get()
 
-    fun deleteProduct() {}
+        product.options.map { it.id?.let { productId -> this.productOptionsRepository.deleteById(productId) } }
+        product.pictures.map { it.id?.let { pictureId -> this.productPictureRepository.deleteById(pictureId) } }
+        product.guidance?.id?.let { this.productGuidanceRepository.deleteById(it) }
+        product.information?.id?.let { this.productInformationRepository.deleteById(it) }
+
+        this.productRepository.deleteById(port.productId)
+        return true
+    }
 
     fun editProduct() {}
 
-
     fun getProduct(port: ProductRetrievePort): Product? {
-        return this.productRepository.retrieveProduct(port.productId)
+        val product = this.productRepository.retrieveProduct(port.productId)
             ?: throw IllegalArgumentException("찾으시는 상품이 존재하지 않습니다. ID: ${port.productId}")
+
+        return product
     }
-    fun getProducts(pageable: Pageable): PageImpl<Product> {
-        return productRepository.retrieveProducts(pageable)
+    fun getProducts(pageable: Pageable): Page<Product> {
+        return productRepository.findAll(pageable)
+//        return productRepository.retrieveProducts(pageable)
     }
 
 }

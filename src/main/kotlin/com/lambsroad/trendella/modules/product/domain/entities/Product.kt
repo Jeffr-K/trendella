@@ -30,6 +30,7 @@ class Product (
     @Column(length = 30, nullable = false)
     var title: String = title
         protected set
+
     @Embedded
     var price: Price = price
         protected set
@@ -40,7 +41,10 @@ class Product (
     @UpdateTimestamp
     var updatedAt: LocalDateTime = LocalDateTime.now()
 
-    @JsonBackReference("categoryReference")
+    // TODO: 무한 참조 문제를 해결하기 위한 두가지 방법의 Trade off 고민
+    // TODO: Jackson 라이브러리 학습
+    // @JsonSerialize(using = CategorySerializer::class)
+    @JsonManagedReference("categoryReference")
     @ManyToOne(fetch = FetchType.LAZY)
     var category: Category = category
         protected set
@@ -70,9 +74,8 @@ class Product (
     var pictures: MutableList<Picture> = pictures
         protected set
 
-
     @ManyToMany
-    @JsonIgnoreProperties("product") // TODO: 희림님께 공유 (양방향 순환 참조 방어용 코드, @JsonIgnore 와 @JsonManagedReference 공유)
+    @JsonIgnoreProperties("product")
     @JoinTable(name = "HashTag",
         joinColumns = [JoinColumn(name = "productId")],
         inverseJoinColumns = [JoinColumn(name = "tagId")])
