@@ -1,11 +1,11 @@
 package com.lambsroad.trendella.modules.product.application.service
 
+import com.lambsroad.trendella.infrastructure.database.adapters.CategoriesSearchAllAdapter
 import com.lambsroad.trendella.modules.product.application.port.CategoryDeletePort
 import com.lambsroad.trendella.modules.product.application.port.CategoryEditPort
 import com.lambsroad.trendella.modules.product.application.port.CategoryRegisterPort
 import com.lambsroad.trendella.modules.product.domain.entities.Category
 import com.lambsroad.trendella.modules.product.domain.repositories.CategoryRepository
-import com.lambsroad.trendella.infrastructure.database.adapters.CategoriesSearchAllAdapter
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,7 +14,7 @@ class CategoryService(
 ) {
 
     fun registerCategory(port: CategoryRegisterPort): Boolean {
-        val category = this.categoryRepository.getCategory(port.parent) // 1
+        val category = this.categoryRepository.getCategory(port.parent)
         this.categoryRepository.save(Category(port.name, category))
         return true
     }

@@ -1,4 +1,4 @@
-package com.lambsroad.trendella.infrastructure.database.support
+package com.lambsroad.trendella.modules.product.domain.repositories
 
 import com.lambsroad.trendella.infrastructure.database.adapters.ProductDetailRetrieveAdapter
 import com.lambsroad.trendella.infrastructure.database.adapters.QProductDetailRetrieveAdapter
@@ -6,6 +6,7 @@ import com.lambsroad.trendella.modules.product.domain.entities.Product
 import com.lambsroad.trendella.modules.product.domain.entities.QCategory
 import com.lambsroad.trendella.modules.product.domain.entities.QProduct
 import com.querydsl.jpa.impl.JPAQueryFactory
+import jakarta.transaction.Transactional
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
@@ -66,6 +67,18 @@ class ProductRepositorySupportImpl(
             .join(QProduct.product.hashtags)
             .where(QProduct.product.id.eq(productId))
             .fetchOne()
+    }
+
+    @Transactional
+    override fun updateProductQuantity(productId: Long) {
+        val product = this.retrieveProduct(productId)
+            ?: throw IllegalStateException("현재 상품이 존재하지 않습니다.")
+
+        this.queryFactory
+            .update(QProduct.product)
+            .set(QProduct.product.quantity, product.quantity + 1)
+            .where(QProduct.product.id.eq(productId))
+            .execute()
     }
 
     // TODO: [PageImpl 개선기](https://junior-datalist.tistory.com/342)

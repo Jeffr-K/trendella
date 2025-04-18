@@ -25,6 +25,7 @@ class ProductController(
             ProductRegisterPort(
                 adapter.title,
                 adapter.price,
+                adapter.quantity,
                 adapter.hashTag,
                 adapter.brandId,
                 adapter.options,
@@ -45,7 +46,9 @@ class ProductController(
     }
 
     @PutMapping
-    fun editProduct() {}
+    fun editProduct(@RequestBody @Valid adapter: Any): Result<*> {
+        return Result.success("상품 수정이 완료되었습니다.", null)
+    }
 
     @GetMapping
     fun getProduct(@RequestBody @Valid adapter: ProductRetrieveAdapter): Result<*> {

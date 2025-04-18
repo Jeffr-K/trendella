@@ -28,6 +28,7 @@ configurations {
 }
 
 allOpen {
+    annotation("org.springframework.data.mongodb.core.mapping.Document")
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
@@ -43,7 +44,6 @@ val mockkVersion = "1.13.8"
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-batch")
-//    implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("io.hypersistence:hypersistence-utils-hibernate-62:3.6.1")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -54,15 +54,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
-    implementation("com.google.firebase:firebase-admin:9.2.0")
-    implementation("com.twilio.sdk:twilio:9.2.1")
     testImplementation("io.kotest:kotest-runner-junit5-jvm:4.6.0")
-//    implementation("org.apache.kafka:kafka-streams")
-//    implementation("org.springframework.kafka:spring-kafka")
 
     compileOnly("org.projectlombok:lombok")
 
-//    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     runtimeOnly("com.mysql:mysql-connector-j")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
@@ -99,10 +94,6 @@ val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "17"
 }
-
-//tasks.withType<Test> {
-//    useJUnitPlatform()
-//}
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()

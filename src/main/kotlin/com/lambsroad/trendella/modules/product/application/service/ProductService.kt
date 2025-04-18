@@ -28,7 +28,7 @@ class ProductService(
     @Transactional
     fun registerProduct(port: ProductRegisterPort) : Boolean {
         val options = port.options.map {
-            val option = Options(it.type, it.name, it.price, it.product)
+            val option = Options(it.type, it.name, it.price, it.quantity, it.product)
             this.productOptionsRepository.save(option)
         }.toMutableList()
 
@@ -61,6 +61,7 @@ class ProductService(
         val product = Product(
             port.title,
             port.price,
+            port.quantity,
             pictures,
             hashtags,
             brand,

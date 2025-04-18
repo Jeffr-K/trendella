@@ -14,6 +14,7 @@ import java.time.LocalDateTime
 class Product (
     title: String,
     price: Price,
+    quantity: Int,
     pictures: MutableList<Picture>,
     hashtag: MutableList<Tag>,
     brand: Brand,
@@ -33,6 +34,10 @@ class Product (
 
     @Embedded
     var price: Price = price
+        protected set
+
+    @Column
+    var quantity: Int = quantity
         protected set
 
     @CreationTimestamp

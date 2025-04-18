@@ -1,4 +1,4 @@
-package com.lambsroad.trendella.infrastructure.database.support
+package com.lambsroad.trendella.modules.product.domain.repositories
 
 import com.lambsroad.trendella.modules.product.domain.entities.Category
 import com.lambsroad.trendella.modules.product.domain.entities.QCategory

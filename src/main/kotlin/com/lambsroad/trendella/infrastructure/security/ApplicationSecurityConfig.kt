@@ -42,6 +42,7 @@ class ApplicationSecurityConfig {
                     .requestMatchers("/product/list/**").permitAll()
                     .requestMatchers("/category/**").permitAll()
                     .requestMatchers("/category/list/**").permitAll()
+                    .requestMatchers("/cart/**").permitAll()
                     .requestMatchers("/brand/**").permitAll()
                     .requestMatchers("/exception/**").permitAll()
                     .anyRequest().authenticated()

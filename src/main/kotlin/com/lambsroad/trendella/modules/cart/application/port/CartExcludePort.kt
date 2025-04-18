@@ -1,5 +1,7 @@
 package com.lambsroad.trendella.modules.cart.application.port
 
 data class CartExcludePort(
-    val productId: Long
+    val cartId: Long,
+    val productId: Long,
+    val memberId: Long,
 )

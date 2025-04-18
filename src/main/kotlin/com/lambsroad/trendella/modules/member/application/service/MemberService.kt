@@ -11,13 +11,15 @@ import com.lambsroad.trendella.modules.member.domain.services.MemberDomainServic
 import com.lambsroad.trendella.modules.member.presentor.adapter.MemberDropdownAdapter
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.http.HttpStatus
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class MemberService(
     private val memberRepository: MemberRepository,
     private val memberDomainService: MemberDomainService,
-    private val applicationEventPublisher: ApplicationEventPublisher
+    private val applicationEventPublisher: ApplicationEventPublisher,
+    private val passwordEncoder: PasswordEncoder
 ) {
     fun registerMemberAccount(port: MemberRegisterAccountPort) {
         val isExist: Boolean = this.memberDomainService.isAlreadyMemberExist(port.email)
@@ -28,7 +30,7 @@ class MemberService(
                 val member = Member(
                     port.username,
                     port.email,
-                    port.password,
+                    passwordEncoder.encode(port.password),
                     port.phone,
                     port.gender,
                     port.grade,
@@ -40,7 +42,7 @@ class MemberService(
             }
         }
     }
-    //  publishEvent -> [Event] <-
+
     fun dropdownMemberAccount(port: MemberDropdownAdapter) {
         val member = this.memberDomainService.getMemberById(port.id)
 

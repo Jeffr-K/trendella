@@ -1,4 +1,4 @@
-package com.lambsroad.trendella.infrastructure.database.support
+package com.lambsroad.trendella.modules.product.domain.repositories
 
 import com.lambsroad.trendella.infrastructure.database.adapters.ProductDetailRetrieveAdapter
 import com.lambsroad.trendella.modules.product.domain.entities.Product
@@ -9,4 +9,5 @@ interface ProductRepositorySupport {
     fun retrieveProductProjection(productId: Long): ProductDetailRetrieveAdapter?
     fun retrieveProducts(pageable: Pageable): PageImpl<Product>
     fun retrieveProduct(productId: Long): Product?
+    fun updateProductQuantity(productId: Long)
 }

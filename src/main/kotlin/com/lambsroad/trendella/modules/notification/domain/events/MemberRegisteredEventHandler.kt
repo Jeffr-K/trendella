@@ -10,9 +10,5 @@ class MemberRegisteredEventHandler {
 
     @Async
     @EventListener
-    fun handle(event: MemberRegisteredEvent) {
-        while (true) {
-            println("ggg")
-        }
-    }
+    fun handle(event: MemberRegisteredEvent) {}
 }

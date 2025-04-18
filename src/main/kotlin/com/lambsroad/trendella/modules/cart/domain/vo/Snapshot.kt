@@ -1,5 +1,6 @@
-package com.lambsroad.trendella.modules.cart.domain.entities
+package com.lambsroad.trendella.modules.cart.domain.vo
 
+import com.lambsroad.trendella.modules.cart.domain.entities.Cart
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.CreationTimestamp

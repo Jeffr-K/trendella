@@ -31,7 +31,7 @@ class Member(
     var email: String = email
         protected set
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 255, nullable = false)
     var password: String = password
         protected set
 
@@ -61,4 +61,5 @@ class Member(
     @UpdateTimestamp
     var updatedAt: LocalDateTime = LocalDateTime.now()
         protected set
+
 }
